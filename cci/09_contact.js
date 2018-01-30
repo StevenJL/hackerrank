@@ -1,14 +1,27 @@
 class TryNode {
-  constructor() {
+  constructor(value) {
+    this.value = value
     this.children = []
   }
 
   findOrCreateChild(letter) {
-    this.children.includes()
+    if(this.children.includes(letter)){
+    }
+  }
+
+
+}
+
+rootNode = new TryNode("*")
+
+addWord = (word) => {
+  for(letter of word.split("")) {
+    rootNode.findOrCreateChild(letter)
   }
 }
 
-entryNode = new TryNode()
+addWord("cat")
+debugger
 
 
 

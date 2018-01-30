@@ -30,7 +30,7 @@ class BinaryMinHeap
       if @store[parent_indx] > @store[indx]
         swap!(indx, parent_indx)
       end
-      indx -= 1
+      indx = parent_indx
     end
   end
 
@@ -46,6 +46,7 @@ class BinaryMinHeap
   end
 
   def parent_indx_from_child_indx(child_indx)
+    return 0 if child_indx == 0
     (child_indx - 1) / 2
   end
 end
@@ -56,4 +57,3 @@ bmh.insert(2)
 bmh.insert(7)
 bmh.insert(27)
 bmh.insert(17)
-
