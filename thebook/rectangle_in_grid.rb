@@ -1,10 +1,10 @@
 # Find the area of the rectangle defined by the 1s in this grid
 grid = [
-  [0, 0, 1, 0, 0, 0, 1, 0],
+  [0, 0, 1, 0, 0, 1, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 1, 0, 0, 0, 1, 0],
+  [0, 0, 1, 0, 0, 1, 0, 0],
 ]
 
 # Get coordinates of any of the corners by dimension
