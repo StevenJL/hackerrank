@@ -36,4 +36,3 @@ def permute(string, char)
   output
 end
 
-
