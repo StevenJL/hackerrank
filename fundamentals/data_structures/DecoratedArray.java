@@ -1,24 +1,19 @@
 import java.io.*;
-class DecoratedArray
-{
+class DecoratedArray {
 
   private long[] storageArray;
   private int numElements;
   private int maxNumElements;
 
   // constructor
-  public DecoratedArray(int maxNumElements)
-  {
+  public DecoratedArray(int maxNumElements) {
     storageArray = new long[maxNumElements];
   }
 
   // find element in array
-  public boolean find(long target)
-  {
-    for (int j=0 ; j < numElements; j++)
-    {
-      if(storageArray[j] == target)
-      {
+  public boolean find(long target) {
+    for (int j=0 ; j < numElements; j++) {
+      if(storageArray[j] == target) {
         return true;
       }
     }
@@ -26,16 +21,13 @@ class DecoratedArray
   }
 
   // insert element into end of array
-  public void insert(long element)
-  {
+  public void insert(long element) {
     storageArray[numElements++] = element;
   }
 
   // display array
-  public void display()
-  {
-    for(int j=0; j < numElements; j++)
-    {
+  public void display() {
+    for(int j=0; j < numElements; j++) {
       System.out.print(storageArray[j]);
     }
     System.out.println("");
@@ -43,20 +35,19 @@ class DecoratedArray
 
   // deletes and returns boolean of whether or not delete
   // was successful
-  public boolean deleteEl(long element)
-  {
+  public boolean deleteEl(long element) {
     int j = 0;
-    while(j < numElements)
-    {
-      if(storageArray[j] == element)
-      { break; }
+    while(j < numElements) {
+      if(storageArray[j] == element) {
+        break;
+      }
       j++;
     }
 
-    if(j == numElements)
-    { return false; }
-    for(int i = j; i < numElements; i++)
-    {
+    if(j == numElements) {
+      return false;
+    }
+    for(int i = j; i < numElements; i++) {
       storageArray[i] = storageArray[i+1];
     }
     numElements--;
@@ -64,10 +55,8 @@ class DecoratedArray
   }
 }
 
-class DecoratedArrayMain
-{
-  public static void main(String[] args)
-  {
+class DecoratedArrayMain {
+  public static void main(String[] args) {
     DecoratedArray decoratedArray = new DecoratedArray(30);
     decoratedArray.insert(1);
     decoratedArray.insert(4);
@@ -77,8 +66,7 @@ class DecoratedArrayMain
     decoratedArray.insert(3);
 
     decoratedArray.deleteEl(4);
-    if(decoratedArray.find(4))
-    {
+    if(decoratedArray.find(4)) {
       System.out.println("You dun goofed");
     }
 
