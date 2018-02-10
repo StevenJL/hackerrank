@@ -95,6 +95,10 @@ class OrderedArrayMain {
     if(orderedArray.find(5)){
       System.out.println("You dun' goofed");
     }
+
+    if(orderedArray.find(9)){
+      System.out.println("You dun' goofed");
+    }
     if(orderedArray.find(3)){
       System.out.println("You found 3");
     }
