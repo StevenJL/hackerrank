@@ -1,7 +1,7 @@
 import java.io.*;
 
 class Link {
-  private int idata;
+  public int idata;
   public Link next;
 
   public Link(int idataArg) {
@@ -35,6 +35,17 @@ class LinkedList {
     firstLink = firstLink.next;
   }
 
+  public Link find(int num) {
+    Link currentLink = firstLink;
+    while(currentLink.idata != num ) {
+      if(currentLink.next == null) {
+        return null;
+      }
+      currentLink = currentLink.next;
+    }
+    return currentLink;
+  }
+
   public void display() {
     Link currentLink = firstLink;
     while(currentLink != null) {
@@ -58,6 +69,6 @@ class LinkedListMain {
     linkedList.insertFirst(1);
     linkedList.insertFirst(5);
     linkedList.insertFirst(9);
-    linkedList.display();
+    System.out.println(linkedList.find(9).idata);
   }
 }
