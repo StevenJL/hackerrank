@@ -13,18 +13,33 @@ class Link {
   }
 }
 
-class LinkedList {
+class FirstLastLinkedList {
 
   private Link firstLink;
+  private Link lastLink;
 
-  public LinkedList() {
+  public FirstLastLinkedList() {
     firstLink = null;
+    lastLink = null;
   }
 
   public void insertFirst(int num) {
     Link link = new Link(num);
+    if(isEmpty()) {
+      lastLink = link;
+    }
     link.next = firstLink;
     firstLink = link;
+  }
+
+  public void insertLast(int num) {
+    Link link = new Link(num);
+    if(isEmpty()) {
+      firstLink = link;
+    } else {
+      lastLink.next = link;
+    }
+    lastLink = link;
   }
 
   public void deleteFirst() {
@@ -57,7 +72,7 @@ class LinkedList {
 
 class LinkedListMain {
   public static void main(String[] args) {
-    LinkedList linkedList = new LinkedList();
+    FirstLastLinkedList linkedList = new FirstLastLinkedList();
 
     linkedList.insertFirst(3);
     linkedList.insertFirst(1);
@@ -68,3 +83,4 @@ class LinkedListMain {
     System.out.println(linkedList.find(9).idata);
   }
 }
+
