@@ -8,6 +8,8 @@ DICT = {
     '1' => ['a', 'b'],
     '2' => ['c', 'd'],
     '12' => ['e', 'f'],
+    '3' => ['g', 'h'],
+    '4' => ['i', 'j'],
 }
 
 # get_words('1') => ['a', 'b']
@@ -129,7 +131,7 @@ puts get_words('122').inspect
 
 
 [ [['a', 'b'], ['c', 'd'], ['c', 'd']], [['e', 'f'], ['c', 'd']] ]
-# '122' => ( ['a', 'b'], '22' ),([a b] [c d ] [c d] ) ( ['e, f'], '2' )
+# '122' => ( ['a', 'b'], '22' ),(['a', 'b'] ['c', 'd' ] ['c', 'd'] ) ( ['e', 'f'], '2' )
 
 
 # puts combinates(['a','b'],['c','d'])
@@ -140,4 +142,5 @@ puts get_words('122').inspect
 # puts get_words('1').inspect
 # puts get_words('12').inspect
 # puts get_words('122').inspect
+
 
