@@ -30,27 +30,21 @@ sauron = Node.new("Sauron")
 melkor.add_child(sauron)
 lorien.add_child(gandalf)
 
+def breadth_first_search(node, target)
+  queue = Queue.new
+  queue.push(node)
 
-# Recursive depth_first_search
-@found = nil
-def depth_first_search(node, target)
-  return unless @found
-  puts "Checking #{node.value}"
-  if node.value == target
-    @found = node
-    return
+  while(!queue.empty?)
+    node = queue.pop
+    puts "Checking: #{node.value}"
+    return target if node.value == target
+    node.children.each do |child_node|
+      queue.push(child_node)
+    end
   end
-
-  return if node.children.empty?
-
-  node.children.each do |child|
-    depth_first_search(child, target)
-  end
+  false
 end
 
-depth_first_search(eru, "Gandalf")
-
-
-
+puts breadth_first_search(eru, "Gandalf")
 
 
