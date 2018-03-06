@@ -4,7 +4,6 @@
 # output: "aaa is a name" Wrong output: "a a a is a name"
 
 require "set"
-require "pry"
 
 dictionary = Set.new
 dictionary.add("dog")
