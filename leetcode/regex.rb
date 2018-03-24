@@ -4,41 +4,35 @@
 #    The matching should cover the entire input string (not partial).
 #
 #    The function prototype should be:
-#    bool isMatch(const char *s, const char *p)
+#    bool match?(const char *s, const char *p)
 #
 #  Some examples:
-#  isMatch("aa","a") → false
-#  isMatch("aa","aa") → true
-#  isMatch("aaa","aa") → false
-#  isMatch("aa", "a*") → true
-#  isMatch("aa", ".*") → true
-#  isMatch("ab", ".*") → true
-#  isMatch("aab", "c*a*b") → true
-#  match?("zerdabc", ".*abc") -> true
 
 def match?(str, regex)
-  str_len = str.length
-  regex_len = regex.length
-  str_indx = 0
-  regex_indx = 0
-  while(str_indx < str_len || regex_indx < regex_len)
-    # return false if one reaches the end while the other still has chars
+  if regex.nil? || regex.empty?
+    return (str.nil? || str.empty?)
+  end
 
-    if regex[regex_indx..regex_indx+1] == '.*'
-      # if there is another regex char after this
-      # then run through the string until that is found
+  if !str.nil? && !str.empty? && [str[0], "."].include?(regex[0])
+    first_matches = true
+  else
+    first_matches = false
+  end
 
-    elsif regex[regex_indx + 1] == '*'
-      # case 1: does not match, move str_indx and move regex_indx
-      # case 2: matches, then move str_indx til it stops matching
-    elsif regex[regex_indx] == '.'
-
-    elsif str[str_indx] == regex[regex_indx]
-
-    elsif str[str_indx] != regex[regex_indx]
-
-    end
+  if regex.length > 1 && regex[1] == "*"
+    return match?(str, regex[2..-1]) || (first_matches && match?(str[1..-1], regex))
+  else
+    return first_matches && match?(str[1..-1], regex[1..-1])
   end
 end
+
+puts match?("aa","a") # false
+puts match?("aa","aa") # true
+puts match?("aaa","aa") # false
+puts match?("aa", "a*") # true
+puts match?("aa", ".*") # true
+puts match?("ab", ".*") # true
+puts match?("aab", "c*a*b") # true
+puts match?("zerdabc", ".*abc") # true
 
 
