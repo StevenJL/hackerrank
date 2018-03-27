@@ -23,27 +23,58 @@ require "pry"
 #  You may assume beginWord and endWord are non-empty and are not the same.
 
 def ladder_length(begin_word, end_word, word_list)
-  WordLadder.new(word_list).shortest_path_aux(begin_word, end_word, 0)
+  word_ladder = WordLadder.new(word_list)
+  word_ladder.shortest_path(begin_word, end_word)
+  pre_answer = word_ladder.distances_from_origin[end_word]
+  return 0 unless pre_answer
+  pre_answer + 1
 end
 
 class WordLadder
+  attr_reader :distances_from_origin, :queue, :word_list
+
   def initialize(word_list)
     @word_list = word_list
     @queue = []
+    @distances_from_origin = {}
   end
 
-  def shortest_path_aux(start_word, end_word, steps_so_far)
-    @word_list = @word_list - [start_word]
-    if start_word == end_word
-      return steps_so_far
-    end
-    neighbors = @word_list.select { |word| off_by_one_letter?(start_word, word) }
-    return 0 if neighbors.empty?
-    path_steps = neighbors.map do |neighbor|
-      shortest_path_aux(neighbor, end_word,  steps_so_far + 1)
+  def shortest_path(start_word, end_word)
+    neighbors = neighbors(start_word)
+    neighbors.each do |word|
+      push_to_queue(word, 1)
     end
 
-    path_steps.compact.reject {|path_step| path_step == 0 }.min || 0
+    while !@queue.empty?
+      word = @queue.shift
+      process_word(word)
+    end
+  end
+
+  def push_to_queue(word, dist)
+    unless @queue.include?(word)
+      @queue << word
+    end
+    unless @distances_from_origin[word]
+      @distances_from_origin[word] = dist
+    end
+    if @distances_from_origin[word] && @distances_from_origin[word] > dist
+      @distances_from_origin[word] = dist
+    end
+  end
+
+  def process_word(word)
+    dist_from_origin = @distances_from_origin[word]
+    return unless dist_from_origin
+    neighbors = neighbors(word)
+    return if neighbors.empty?
+    neighbors.each do |nword|
+      push_to_queue(nword, dist_from_origin + 1)
+    end
+  end
+
+  def neighbors(word)
+    @word_list.select { |cand_word| off_by_one_letter?(word, cand_word) && @distances_from_origin[cand_word].nil? }
   end
 
   # Assuming word1 and word2 have the same length
@@ -93,8 +124,5 @@ end_word = "cog"
 word_list = ["hot","dot","dog","lot","log","cog"]
 
 puts ladder_length(start_word, end_word, word_list)
-
-
-
 
 
